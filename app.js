@@ -4,11 +4,21 @@ import express from 'express';
 import React from 'react';
 import RDS from 'react-dom/server';
 import Avataaars from 'avataaars';
+import {Piece} from 'avataaars';
 
 const app = express();
 
 app.get('/', (req, res) => {
   const appString = RDS.renderToString(<Avataaars {...req.query} />);
+
+  res.writeHead(200, {
+    'Content-Type': 'image/svg+xml',
+  });
+  res.end(appString);
+});
+
+app.get('/piece', (req, res) => {
+  const appString = RDS.renderToString(<Piece pieceSize="200" {...req.query} />);
 
   res.writeHead(200, {
     'Content-Type': 'image/svg+xml',
