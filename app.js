@@ -8,6 +8,8 @@ import {Piece} from 'avataaars';
 
 const app = express();
 
+app.set('view engine', 'html')
+
 app.get('/', (req, res) => {
   const appString = RDS.renderToString(<Avataaars {...req.query} />);
 
